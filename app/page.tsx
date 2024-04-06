@@ -1,31 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { PlayerPosition } from "./lib/constants";
+import {
+  AllRotations,
+  AllStances,
+  PlayerPosition,
+  Rotation,
+  Stance,
+} from "./lib/constants";
 import { RadioButton } from "./components/ui";
 import { SvgCourt, SvgPlayer } from "./components/svg";
+import { plays } from "./lib/plays";
 
 export default function Home() {
-  const [rotation, setRotation] = useState("R1");
-  const [stance, setStance] = useState("Neutral");
+  const [rotation, setRotation] = useState(Rotation.R1);
+  const [stance, setStance] = useState(Stance.Neutral);
 
   return (
     <main className="bg-marine flex min-h-screen flex-col items-center justify-between p-12">
       <svg viewBox="0 0 1250 1500" style={{ maxHeight: "calc(100vh - 200px)" }}>
         <g transform="translate(175,-700)">
           <SvgCourt />
-          <SvgPlayer x={150} y={1050} position={PlayerPosition.HitterFar} />
-          <SvgPlayer x={450} y={1050} position={PlayerPosition.CentralNear} />
-          <SvgPlayer x={750} y={1050} position={PlayerPosition.Setter} />
-          <SvgPlayer x={150} y={1450} position={PlayerPosition.CentralFar} />
-          <SvgPlayer x={450} y={1450} position={PlayerPosition.HitterNear} />
-          <SvgPlayer x={750} y={1450} position={PlayerPosition.Opposite} />
+          {plays[rotation][stance].map((item) => {
+            if (item.kind === "player") {
+              return (
+                <SvgPlayer
+                  x={item.x}
+                  y={item.y}
+                  position={item.position}
+                  key={item.position}
+                />
+              );
+            }
+          })}
         </g>
       </svg>
 
       <div className="w-full flex flex-col gap-4">
         <div className="flex justify-between">
-          {["R1", "R2", "R3", "R4", "R5", "R6"].map((value) => (
+          {AllRotations.map((value) => (
             <RadioButton
               name="rotation"
               value={value}
@@ -36,7 +49,7 @@ export default function Home() {
           ))}
         </div>
         <div className="flex justify-between">
-          {["Neutral", "Defense", "Attack"].map((value) => (
+          {AllStances.map((value) => (
             <RadioButton
               name="stance"
               value={value}
