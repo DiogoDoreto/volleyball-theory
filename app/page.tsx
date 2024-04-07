@@ -1,14 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as R from "ramda";
-import {
-  AllRotations,
-  AllStances,
-  PlayerPosition,
-  Rotation,
-  Stance,
-} from "./lib/constants";
+import { AllRotations, AllStances, Rotation, Stance } from "./lib/constants";
 import { RadioButton } from "./components/ui";
 import { SvgCourt, SvgPlayer } from "./components/svg";
 import { plays } from "./lib/plays";
@@ -18,6 +12,17 @@ export default function Home() {
   const [stance, setStance] = useState(Stance.Neutral);
   const itemsOnCanvas = R.groupBy(R.prop("kind"), plays[rotation][stance]);
   const players = R.sortBy(R.prop("position"), itemsOnCanvas.player || []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", ({ key }) => {
+      if (["1", "2", "3", "4", "5", "6"].includes(key)) {
+        setRotation(AllRotations[parseInt(key) - 1]);
+      }
+      if (key === "n") setStance(Stance.Neutral);
+      if (key === "d") setStance(Stance.Defense);
+      if (key === "a") setStance(Stance.Attack);
+    });
+  }, []);
 
   return (
     <main className="bg-marine flex min-h-screen flex-col items-center justify-between p-12">
