@@ -38,7 +38,14 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.CentralNear,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Setter,
+            PlayerPosition.Opposite,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterNear,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterFar,
+        ),
     },
     [Rotation.R2]: {
         [Stance.Neutral]: makeNeutralStance(
@@ -50,7 +57,14 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.HitterFar,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Opposite,
+            PlayerPosition.Setter,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterNear,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterFar,
+        ),
     },
     [Rotation.R3]: {
         [Stance.Neutral]: makeNeutralStance(
@@ -62,7 +76,14 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.Opposite,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Opposite,
+            PlayerPosition.Setter,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterNear,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterFar,
+        ),
     },
     [Rotation.R4]: {
         [Stance.Neutral]: makeNeutralStance(
@@ -74,7 +95,14 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.CentralFar,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Opposite,
+            PlayerPosition.Setter,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterFar,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterNear,
+        ),
     },
     [Rotation.R5]: {
         [Stance.Neutral]: makeNeutralStance(
@@ -86,7 +114,14 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.HitterNear,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Setter,
+            PlayerPosition.Opposite,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterFar,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterNear,
+        ),
     },
     [Rotation.R6]: {
         [Stance.Neutral]: makeNeutralStance(
@@ -98,6 +133,13 @@ export const plays: Record<Rotation, Record<Stance, ItemOnCanvas[]>> = {
             PlayerPosition.Setter,
         ),
         [Stance.Defense]: [],
-        [Stance.Attack]: [],
+        [Stance.Attack]: makeNeutralStance(
+            PlayerPosition.Setter,
+            PlayerPosition.Opposite,
+            PlayerPosition.CentralFar,
+            PlayerPosition.HitterFar,
+            PlayerPosition.CentralNear,
+            PlayerPosition.HitterNear,
+        ),
     },
 };
