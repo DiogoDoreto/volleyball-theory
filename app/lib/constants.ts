@@ -46,7 +46,7 @@ export const AllRotations = [
 
 export enum Stance {
     Neutral = "Neutral",
-    Defense = "Defense",
+    Defense = "Srv. Defense",
     Attack = "Attack",
 }
 
