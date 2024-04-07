@@ -4,7 +4,29 @@ import {
   PlayerShortLabelMap,
 } from "../lib/constants";
 
-function SvgCourt3MLine({ y }: { y: number }) {
+interface Coordinate {
+  x: number;
+  y: number;
+}
+
+const SvgGroupWithCoordinate = ({
+  x,
+  y,
+  children,
+}: React.PropsWithChildren<Coordinate>) => {
+  return (
+    <g
+      style={{
+        transform: `translate(${x}px,${y}px)`,
+        transition: "transform 600ms ease-out",
+      }}
+    >
+      {children}
+    </g>
+  );
+};
+
+function SvgCourt3MLine({ y }: Pick<Coordinate, "y">) {
   return (
     <>
       <line x1="0" x2="900" y1={y} y2={y} />
@@ -42,17 +64,9 @@ export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
   const color = PlayerColorMap[position];
   const label = PlayerShortLabelMap[position];
   return (
-    <>
-      <circle
-        cx={x}
-        cy={y}
-        r="60"
-        strokeWidth="4"
-        className={`fill-${color} stroke-black`}
-      />
+    <SvgGroupWithCoordinate x={x} y={y}>
+      <circle r="60" strokeWidth="4" className={`fill-${color} stroke-black`} />
       <text
-        x={x}
-        y={y}
         textAnchor="middle"
         dominantBaseline="central"
         className="text-5xl"
@@ -62,15 +76,9 @@ export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
       >
         {label}
       </text>
-      <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="central"
-        className="text-5xl"
-      >
+      <text textAnchor="middle" dominantBaseline="central" className="text-5xl">
         {label}
       </text>
-    </>
+    </SvgGroupWithCoordinate>
   );
 }

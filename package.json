@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "next": "14.1.4",
+    "ramda": "^0.29.1",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/ramda": "^0.29.12",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import * as R from "ramda";
 import {
   AllRotations,
   AllStances,
@@ -15,24 +16,17 @@ import { plays } from "./lib/plays";
 export default function Home() {
   const [rotation, setRotation] = useState(Rotation.R1);
   const [stance, setStance] = useState(Stance.Neutral);
+  const itemsOnCanvas = R.groupBy(R.prop("kind"), plays[rotation][stance]);
+  const players = R.sortBy(R.prop("position"), itemsOnCanvas.player || []);
 
   return (
     <main className="bg-marine flex min-h-screen flex-col items-center justify-between p-12">
       <svg viewBox="0 0 1250 1500" style={{ maxHeight: "calc(100vh - 200px)" }}>
         <g transform="translate(175,-700)">
           <SvgCourt />
-          {plays[rotation][stance].map((item) => {
-            if (item.kind === "player") {
-              return (
-                <SvgPlayer
-                  x={item.x}
-                  y={item.y}
-                  position={item.position}
-                  key={item.position}
-                />
-              );
-            }
-          })}
+          {players.map(({ x, y, position }) => (
+            <SvgPlayer x={x} y={y} position={position} key={position} />
+          ))}
         </g>
       </svg>
 
