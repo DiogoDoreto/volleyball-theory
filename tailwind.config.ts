@@ -21,6 +21,9 @@ const config: Config = {
         royal: "rgb(31,83,154)",
         yellow: "rgb(245,200,82)",
       },
+      minHeight: {
+        screen: "100dvh",
+      },
     },
   },
   plugins: [],

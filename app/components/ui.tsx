@@ -2,6 +2,7 @@ interface RadioButtonProps {
   name: string;
   value: string;
   checked: boolean;
+  className?: string;
   onChange: () => void;
 }
 
@@ -9,10 +10,18 @@ export function RadioButton({
   name,
   value,
   checked,
+  className,
   onChange,
 }: RadioButtonProps) {
   return (
-    <label className="has-[:checked]:bg-green hover:bg-green cursor-pointer px-2 rounded">
+    <label
+      className={[
+        className,
+        "bg-royal has-[:checked]:bg-green hover:bg-green cursor-pointer rounded flex items-center justify-center",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {value}
       <input
         type="radio"

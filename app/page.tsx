@@ -25,8 +25,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-marine flex min-h-screen flex-col items-center justify-between p-12">
-      <svg viewBox="0 0 1250 1500" style={{ maxHeight: "calc(100vh - 200px)" }}>
+    <main className="bg-marine flex min-h-screen flex-col items-center justify-between">
+      <svg
+        viewBox="0 0 1250 1150"
+        style={{ maxHeight: "calc(100dvh - 150px)" }}
+      >
         <g transform="translate(175,-700)">
           <SvgCourt />
           {players.map(({ x, y, position }) => (
@@ -35,8 +38,8 @@ export default function Home() {
         </g>
       </svg>
 
-      <div className="w-full flex flex-col gap-4">
-        <div className="flex justify-between">
+      <div className="w-full flex flex-col gap-4 p-6">
+        <div className="flex gap-2 items-stretch h-10">
           {AllRotations.map((value) => (
             <RadioButton
               name="rotation"
@@ -44,10 +47,11 @@ export default function Home() {
               key={value}
               checked={rotation === value}
               onChange={() => setRotation(value)}
+              className="grow"
             />
           ))}
         </div>
-        <div className="flex justify-between">
+        <div className="flex gap-2 items-stretch h-10">
           {AllStances.map((value) => (
             <RadioButton
               name="stance"
@@ -55,6 +59,7 @@ export default function Home() {
               key={value}
               checked={stance === value}
               onChange={() => setStance(value)}
+              className="grow"
             />
           ))}
         </div>
