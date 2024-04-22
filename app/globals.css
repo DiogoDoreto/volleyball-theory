@@ -26,6 +26,15 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+dialog:not([open]) {
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.3);
+  backdrop-filter: blur(5px);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
