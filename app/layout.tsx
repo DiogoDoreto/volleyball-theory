@@ -17,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <script data-goatcounter="https://diogodoreto.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
     </html>
   );
 }
