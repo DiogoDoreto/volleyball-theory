@@ -33,7 +33,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-marine h-screen flex flex-col items-center">
+    <main className="bg-marine min-h-screen max-h-screen flex flex-col items-center">
       <div className="w-full bg-royal flex items-center h-10">
         <h1
           className="grow px-4 font-medium text-lg"
