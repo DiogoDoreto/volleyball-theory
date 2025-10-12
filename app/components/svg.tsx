@@ -2,11 +2,11 @@ import {
   PlayerColorMap,
   PlayerPosition,
   PlayerShortLabelMap,
-} from "../lib/constants";
+} from '../lib/constants'
 
 interface Coordinate {
-  x: number;
-  y: number;
+  x: number
+  y: number
 }
 
 const SvgGroupWithCoordinate = ({
@@ -18,22 +18,22 @@ const SvgGroupWithCoordinate = ({
     <g
       style={{
         transform: `translate(${x}px,${y}px)`,
-        transition: "transform 600ms ease-out",
+        transition: 'transform 600ms ease-out',
       }}
     >
       {children}
     </g>
-  );
-};
+  )
+}
 
-function SvgCourt3MLine({ y }: Pick<Coordinate, "y">) {
+function SvgCourt3MLine({ y }: Pick<Coordinate, 'y'>) {
   return (
     <>
       <line x1="0" x2="900" y1={y} y2={y} />
       <line x1="-175" x2="0" y1={y} y2={y} strokeDasharray="21.875" />
       <line x1="900" x2="1075" y1={y} y2={y} strokeDasharray="0 21.875 0" />
     </>
-  );
+  )
 }
 
 export function SvgCourt() {
@@ -51,18 +51,18 @@ export function SvgCourt() {
       <SvgCourt3MLine y={600} />
       <SvgCourt3MLine y={1200} />
     </g>
-  );
+  )
 }
 
 interface SvgPlayerProps {
-  x: number;
-  y: number;
-  position: PlayerPosition;
+  x: number
+  y: number
+  position: PlayerPosition
 }
 
 export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
-  const color = PlayerColorMap[position];
-  const label = PlayerShortLabelMap[position];
+  const color = PlayerColorMap[position]
+  const label = PlayerShortLabelMap[position]
   return (
     <SvgGroupWithCoordinate x={x} y={y}>
       <circle r="60" strokeWidth="4" className={`fill-${color} stroke-black`} />
@@ -80,5 +80,5 @@ export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
         {label}
       </text>
     </SvgGroupWithCoordinate>
-  );
+  )
 }

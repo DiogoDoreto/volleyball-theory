@@ -1,43 +1,43 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import * as R from "ramda";
-import { AllRotations, AllStances, Rotation, Stance } from "./lib/constants";
-import { RadioButton } from "./components/ui";
-import { SvgCourt, SvgPlayer } from "./components/svg";
-import { plays } from "./lib/plays";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef, useState } from 'react'
+import * as R from 'ramda'
+import { AllRotations, AllStances, Rotation, Stance } from './lib/constants'
+import { RadioButton } from './components/ui'
+import { SvgCourt, SvgPlayer } from './components/svg'
+import { plays } from './lib/plays'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
   faCode,
   faPrint,
   faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [rotation, setRotation] = useState(Rotation.R1);
-  const [stance, setStance] = useState(Stance.Neutral);
-  const itemsOnCanvas = R.groupBy(R.prop("kind"), plays[rotation][stance]);
-  const players = R.sortBy(R.prop("position"), itemsOnCanvas.player || []);
+  const dialog = useRef<HTMLDialogElement>(null)
+  const [rotation, setRotation] = useState(Rotation.R1)
+  const [stance, setStance] = useState(Stance.Neutral)
+  const itemsOnCanvas = R.groupBy(R.prop('kind'), plays[rotation][stance])
+  const players = R.sortBy(R.prop('position'), itemsOnCanvas.player || [])
 
   useEffect(() => {
-    document.addEventListener("keydown", ({ key }) => {
-      if (["1", "2", "3", "4", "5", "6"].includes(key)) {
-        setRotation(AllRotations[parseInt(key) - 1]);
+    document.addEventListener('keydown', ({ key }) => {
+      if (['1', '2', '3', '4', '5', '6'].includes(key)) {
+        setRotation(AllRotations[parseInt(key) - 1])
       }
-      if (key === "n") setStance(Stance.Neutral);
-      if (key === "d") setStance(Stance.Defense);
-      if (key === "a") setStance(Stance.Attack);
-    });
-  }, []);
+      if (key === 'n') setStance(Stance.Neutral)
+      if (key === 'd') setStance(Stance.Defense)
+      if (key === 'a') setStance(Stance.Attack)
+    })
+  }, [])
 
   return (
     <main className="bg-marine min-h-screen max-h-screen flex flex-col items-center">
       <div className="w-full bg-royal flex items-center h-10">
         <h1
           className="grow px-4 font-medium text-lg"
-          style={{ fontVariantCaps: "small-caps" }}
+          style={{ fontVariantCaps: 'small-caps' }}
         >
           Volleyball Theory
         </h1>
@@ -115,5 +115,5 @@ export default function Home() {
         </div>
       </div>
     </main>
-  );
+  )
 }
