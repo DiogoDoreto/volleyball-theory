@@ -14,12 +14,30 @@
     "switchTo": "Switch to {{language}}"
   },
   "player": {
-    "centralFar": "M2",
-    "centralNear": "M1",
-    "hitterFar": "H2",
-    "hitterNear": "H1",
-    "opposite": "Op",
-    "setter": "S"
+    "centralFar": {
+      "short": "M2",
+      "full": "Middle Blocker Far"
+    },
+    "centralNear": {
+      "short": "M1",
+      "full": "Middle Blocker Near"
+    },
+    "hitterFar": {
+      "short": "H2",
+      "full": "Outside Hitter Far"
+    },
+    "hitterNear": {
+      "short": "H1",
+      "full": "Outside Hitter Near"
+    },
+    "opposite": {
+      "short": "Op",
+      "full": "Opposite Hitter"
+    },
+    "setter": {
+      "short": "S",
+      "full": "Setter"
+    }
   },
   "rotation": "R{{number}}",
   "stance": {

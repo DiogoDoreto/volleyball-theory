@@ -1,8 +1,6 @@
 'use client'
-import {
-  PlayerColorMap,
-  PlayerPosition,
-} from '../lib/constants'
+import { useState } from 'react'
+import { PlayerColorMap, PlayerPosition } from '../lib/constants'
 import { useTranslation } from '../i18n'
 
 interface Coordinate {
@@ -14,12 +12,15 @@ const SvgGroupWithCoordinate = ({
   x,
   y,
   children,
-}: React.PropsWithChildren<Coordinate>) => {
+  ...gProps
+}: React.PropsWithChildren<Coordinate> & React.SVGProps<SVGGElement>) => {
   return (
     <g
+      {...gProps}
       style={{
         transform: `translate(${x}px,${y}px)`,
         transition: 'transform 600ms ease-out',
+        ...gProps.style,
       }}
     >
       {children}
@@ -64,20 +65,44 @@ interface SvgPlayerProps {
 export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
   const { t } = useTranslation()
   const color = PlayerColorMap[position]
-  
+  const [showTooltip, setShowTooltip] = useState(false)
+
   const playerLabelMap: Record<PlayerPosition, string> = {
-    [PlayerPosition.CentralFar]: t('player.centralFar'),
-    [PlayerPosition.CentralNear]: t('player.centralNear'),
-    [PlayerPosition.HitterFar]: t('player.hitterFar'),
-    [PlayerPosition.HitterNear]: t('player.hitterNear'),
-    [PlayerPosition.Opposite]: t('player.opposite'),
-    [PlayerPosition.Setter]: t('player.setter'),
+    [PlayerPosition.CentralFar]: t('player.centralFar.short'),
+    [PlayerPosition.CentralNear]: t('player.centralNear.short'),
+    [PlayerPosition.HitterFar]: t('player.hitterFar.short'),
+    [PlayerPosition.HitterNear]: t('player.hitterNear.short'),
+    [PlayerPosition.Opposite]: t('player.opposite.short'),
+    [PlayerPosition.Setter]: t('player.setter.short'),
   }
-  
+
+  const playerFullNameMap: Record<PlayerPosition, string> = {
+    [PlayerPosition.CentralFar]: t('player.centralFar.full'),
+    [PlayerPosition.CentralNear]: t('player.centralNear.full'),
+    [PlayerPosition.HitterFar]: t('player.hitterFar.full'),
+    [PlayerPosition.HitterNear]: t('player.hitterNear.full'),
+    [PlayerPosition.Opposite]: t('player.opposite.full'),
+    [PlayerPosition.Setter]: t('player.setter.full'),
+  }
+
   const label = playerLabelMap[position]
+  const fullName = playerFullNameMap[position]
+
   return (
-    <SvgGroupWithCoordinate x={x} y={y}>
-      <circle r="60" strokeWidth="4" className={`fill-${color} stroke-black`} />
+    <SvgGroupWithCoordinate
+      x={x}
+      y={y}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+      onTouchStart={() => setShowTooltip(true)}
+      onTouchEnd={() => setShowTooltip(false)}
+      style={{ cursor: 'pointer' }}
+    >
+      <circle
+        r="60"
+        strokeWidth="4"
+        className={`fill-${color} stroke-black`}
+      />
       <text
         textAnchor="middle"
         dominantBaseline="central"
@@ -88,9 +113,22 @@ export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
       >
         {label}
       </text>
-      <text textAnchor="middle" dominantBaseline="central" className="text-5xl">
+      <text
+        textAnchor="middle"
+        dominantBaseline="central"
+        className="text-5xl"
+      >
         {label}
       </text>
+      {showTooltip && (
+        <foreignObject x="-200" y="-120" width="400" height="50">
+          <div className="flex items-center justify-center h-full">
+            <div className="bg-black bg-opacity-80 text-white px-3 py-1.5 rounded text-3xl whitespace-nowrap">
+              {fullName}
+            </div>
+          </div>
+        </foreignObject>
+      )}
     </SvgGroupWithCoordinate>
   )
 }

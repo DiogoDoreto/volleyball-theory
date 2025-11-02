@@ -14,12 +14,30 @@
     "switchTo": "Mudar para {{language}}"
   },
   "player": {
-    "centralFar": "C2",
-    "centralNear": "C1",
-    "hitterFar": "P2",
-    "hitterNear": "P1",
-    "opposite": "Op",
-    "setter": "L"
+    "centralFar": {
+      "short": "C2",
+      "full": "Central 2"
+    },
+    "centralNear": {
+      "short": "C1",
+      "full": "Central 1"
+    },
+    "hitterFar": {
+      "short": "P2",
+      "full": "Ponteiro 2"
+    },
+    "hitterNear": {
+      "short": "P1",
+      "full": "Ponteiro 1"
+    },
+    "opposite": {
+      "short": "Op",
+      "full": "Oposto"
+    },
+    "setter": {
+      "short": "L",
+      "full": "Levantador"
+    }
   },
   "rotation": "R{{number}}",
   "stance": {
