@@ -1,6 +1,7 @@
 interface RadioButtonProps {
   name: string
   value: string
+  label?: string
   checked: boolean
   className?: string
   onChange: () => void
@@ -9,6 +10,7 @@ interface RadioButtonProps {
 export function RadioButton({
   name,
   value,
+  label,
   checked,
   className,
   onChange,
@@ -22,7 +24,7 @@ export function RadioButton({
         .filter(Boolean)
         .join(' ')}
     >
-      {value}
+      {label || value}
       <input
         type="radio"
         name={name}

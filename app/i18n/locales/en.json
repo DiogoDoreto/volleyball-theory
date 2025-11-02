@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Volleyball Theory",
+    "description": "Quick volleyball information"
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close",
+    "printVersion": "Print version (PDF)",
+    "sourceCode": "Source Code"
+  },
+  "language": {
+    "current": "Current language: {{language}}. Click to switch.",
+    "switchTo": "Switch to {{language}}"
+  },
+  "player": {
+    "centralFar": "M2",
+    "centralNear": "M1",
+    "hitterFar": "H2",
+    "hitterNear": "H1",
+    "opposite": "Op",
+    "setter": "S"
+  },
+  "rotation": "R{{number}}",
+  "stance": {
+    "neutral": "Neutral",
+    "defense": "Srv. Defense",
+    "attack": "Attack"
+  }
+}

@@ -1,8 +1,9 @@
+'use client'
 import {
   PlayerColorMap,
   PlayerPosition,
-  PlayerShortLabelMap,
 } from '../lib/constants'
+import { useTranslation } from '../i18n'
 
 interface Coordinate {
   x: number
@@ -61,8 +62,19 @@ interface SvgPlayerProps {
 }
 
 export function SvgPlayer({ x, y, position }: SvgPlayerProps) {
+  const { t } = useTranslation()
   const color = PlayerColorMap[position]
-  const label = PlayerShortLabelMap[position]
+  
+  const playerLabelMap: Record<PlayerPosition, string> = {
+    [PlayerPosition.CentralFar]: t('player.centralFar'),
+    [PlayerPosition.CentralNear]: t('player.centralNear'),
+    [PlayerPosition.HitterFar]: t('player.hitterFar'),
+    [PlayerPosition.HitterNear]: t('player.hitterNear'),
+    [PlayerPosition.Opposite]: t('player.opposite'),
+    [PlayerPosition.Setter]: t('player.setter'),
+  }
+  
+  const label = playerLabelMap[position]
   return (
     <SvgGroupWithCoordinate x={x} y={y}>
       <circle r="60" strokeWidth="4" className={`fill-${color} stroke-black`} />

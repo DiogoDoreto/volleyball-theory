@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Teoria do Vôlei",
+    "description": "Informações rápidas sobre vôlei"
+  },
+  "menu": {
+    "open": "Abrir menu",
+    "close": "Fechar",
+    "printVersion": "Versão para impressão (PDF)",
+    "sourceCode": "Código Fonte"
+  },
+  "language": {
+    "current": "Idioma atual: {{language}}. Clique para trocar.",
+    "switchTo": "Mudar para {{language}}"
+  },
+  "player": {
+    "centralFar": "C2",
+    "centralNear": "C1",
+    "hitterFar": "P2",
+    "hitterNear": "P1",
+    "opposite": "Op",
+    "setter": "L"
+  },
+  "rotation": "R{{number}}",
+  "stance": {
+    "neutral": "Neutro",
+    "defense": "Def. Saque",
+    "attack": "Ataque"
+  }
+}

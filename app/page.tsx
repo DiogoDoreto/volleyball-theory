@@ -13,8 +13,11 @@ import {
   faPrint,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from './i18n'
+import { LanguageSwitcher } from './components/LanguageSwitcher'
 
 export default function Home() {
+  const { t } = useTranslation()
   const dialog = useRef<HTMLDialogElement>(null)
   const [rotation, setRotation] = useState(Rotation.R1)
   const [stance, setStance] = useState(Stance.Neutral)
@@ -39,10 +42,11 @@ export default function Home() {
           className="grow px-4 font-medium text-lg"
           style={{ fontVariantCaps: 'small-caps' }}
         >
-          Volleyball Theory
+          {t('app.title')}
         </h1>
+        <LanguageSwitcher />
         <button
-          title="Open menu"
+          title={t('menu.open')}
           className="hover:bg-navy w-10 h-10"
           onClick={() => dialog.current?.showModal()}
         >
@@ -59,7 +63,7 @@ export default function Home() {
           onClick={() => dialog.current?.close()}
         >
           <FontAwesomeIcon icon={faXmark} className="mr-2" />
-          Close
+          {t('menu.close')}
         </button>
         <a
           target="_blank"
@@ -67,7 +71,7 @@ export default function Home() {
           className="border-white border-2 rounded-lg p-4 hover:bg-royal"
         >
           <FontAwesomeIcon icon={faPrint} className="mr-4" />
-          Print version (PDF)
+          {t('menu.printVersion')}
         </a>
         <a
           target="_blank"
@@ -75,7 +79,7 @@ export default function Home() {
           className="border-white border-2 rounded-lg p-4 hover:bg-royal"
         >
           <FontAwesomeIcon icon={faCode} className="mr-4" />
-          Source Code
+          {t('menu.sourceCode')}
         </a>
       </dialog>
 
@@ -102,16 +106,24 @@ export default function Home() {
           ))}
         </div>
         <div className="flex gap-2 items-stretch h-10">
-          {AllStances.map((value) => (
-            <RadioButton
-              name="stance"
-              value={value}
-              key={value}
-              checked={stance === value}
-              onChange={() => setStance(value)}
-              className="grow"
-            />
-          ))}
+          {AllStances.map((value) => {
+            const stanceLabels: Record<Stance, string> = {
+              [Stance.Neutral]: t('stance.neutral'),
+              [Stance.Defense]: t('stance.defense'),
+              [Stance.Attack]: t('stance.attack'),
+            }
+            return (
+              <RadioButton
+                name="stance"
+                value={value}
+                label={stanceLabels[value]}
+                key={value}
+                checked={stance === value}
+                onChange={() => setStance(value)}
+                className="grow"
+              />
+            )
+          })}
         </div>
       </div>
     </main>

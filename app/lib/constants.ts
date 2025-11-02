@@ -17,15 +17,6 @@ export const PlayerColorMap: Record<PlayerPosition, string> = {
   [PlayerPosition.Setter]: 'yellow',
 }
 
-export const PlayerShortLabelMap: Record<PlayerPosition, string> = {
-  [PlayerPosition.CentralFar]: 'M2',
-  [PlayerPosition.CentralNear]: 'M1',
-  [PlayerPosition.HitterFar]: 'H2',
-  [PlayerPosition.HitterNear]: 'H1',
-  [PlayerPosition.Opposite]: 'Op',
-  [PlayerPosition.Setter]: 'S',
-}
-
 export enum Rotation {
   R1 = 'R1',
   R2 = 'R2',

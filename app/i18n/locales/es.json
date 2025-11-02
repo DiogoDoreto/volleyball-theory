@@ -1,0 +1,30 @@
+{
+  "app": {
+    "title": "Teoría del Voleibol",
+    "description": "Información rápida sobre voleibol"
+  },
+  "menu": {
+    "open": "Abrir menú",
+    "close": "Cerrar",
+    "printVersion": "Versión para imprimir (PDF)",
+    "sourceCode": "Código Fuente"
+  },
+  "language": {
+    "current": "Idioma actual: {{language}}. Clic para cambiar.",
+    "switchTo": "Cambiar a {{language}}"
+  },
+  "player": {
+    "centralFar": "C2",
+    "centralNear": "C1",
+    "hitterFar": "P2",
+    "hitterNear": "P1",
+    "opposite": "Op",
+    "setter": "Co"
+  },
+  "rotation": "R{{number}}",
+  "stance": {
+    "neutral": "Neutro",
+    "defense": "Def. Saque",
+    "attack": "Ataque"
+  }
+}
